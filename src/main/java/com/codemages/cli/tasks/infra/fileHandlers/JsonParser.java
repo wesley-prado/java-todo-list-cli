@@ -60,9 +60,9 @@ public class JsonParser {
 		Matcher matcher = KEY_VALUE_PATTERN.matcher(json);
 
 		while (matcher.find()) {
-			String[] keyValue = matcher.group().splitWithDelimiters(":", 2);
+			String[] keyValue = matcher.group().split(":", 2);
 			String key = keyValue[0].replaceAll("\"", "").trim();
-			String value = keyValue[2].replaceAll("\"", "").trim();
+			String value = keyValue[1].replaceAll("\"", "").trim();
 			map.put(key, value);
 		}
 
