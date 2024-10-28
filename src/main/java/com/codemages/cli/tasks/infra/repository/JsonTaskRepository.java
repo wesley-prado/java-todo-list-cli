@@ -4,7 +4,6 @@ import com.codemages.cli.repository.exceptions.DmlException;
 import com.codemages.cli.repository.interfaces.Repository;
 import com.codemages.cli.tasks.infra.fileHandlers.JsonFileHandler;
 import com.codemages.cli.tasks.infra.fileHandlers.JsonParser;
-import com.codemages.cli.tasks.infra.fileHandlers.JsonParserToDelete;
 import com.codemages.cli.tasks.entities.Task;
 import com.codemages.cli.tasks.infra.repository.models.TaskModel;
 
@@ -86,9 +85,10 @@ public class JsonTaskRepository implements Repository<Task> {
 
 	@Override
 	public Task getById(int id) {
-		return tasks.stream().findFirst()
+		return tasks.stream()
 				.filter(t -> t.getId() == id)
 				.map(TaskModel::toTask)
+				.findFirst()
 				.orElse(null);
 	}
 
@@ -111,9 +111,8 @@ public class JsonTaskRepository implements Repository<Task> {
 			List<TaskModel> tasks = new ArrayList<>();
 
 			for (Map<String, Object> map : jsonListMap) {
-				System.out.println(map);
 				tasks.add(new TaskModel(
-						Integer.valueOf((String) map.get("id")),
+						Integer.parseInt((String) map.get("id")),
 						(String) map.get("description"),
 						(String) map.get("status"),
 						LocalDateTime.parse((String) map.get("createdAt")),
