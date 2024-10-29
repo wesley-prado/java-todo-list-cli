@@ -23,10 +23,6 @@ public class JsonParser {
 		for (int i = 0; i < chars.length; i++) {
 			char c = chars[i];
 
-			if (Character.toString(c).isEmpty()) {
-				continue;
-			}
-
 			if (c == '{') {
 				StringBuilder buffer = new StringBuilder();
 				while (i < chars.length) {
