@@ -13,6 +13,18 @@ public class MarkInProgressCommand implements Command {
 	}
 
 	public void execute(List<String> args) {
-		System.out.println("Mark-in-progress command executed");
+		if (args.isEmpty()) {
+			System.err.println("The task id is required");
+			return;
+		}
+
+		String taskId = args.getFirst();
+
+		try {
+			int id = Integer.parseInt(taskId);
+			taskService.markInProgress(id);
+		} catch (NumberFormatException e) {
+			System.err.println("Invalid task id: " + taskId);
+		}
 	}
 }
