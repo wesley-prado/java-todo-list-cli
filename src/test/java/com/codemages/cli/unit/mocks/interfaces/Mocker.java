@@ -8,8 +8,8 @@ import java.util.List;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class Mocker {
-		protected final List<String>   calledMethods = new ArrayList<String>();
-		protected final List<Object[]> passedArgs    = new ArrayList<Object[]>();
+		protected final List<String>   calledMethods = new ArrayList<>();
+		protected final List<Object[]> passedArgs    = new ArrayList<>();
 
 		public void assertCalledWith(
 						String methodName,
