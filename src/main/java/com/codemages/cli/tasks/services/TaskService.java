@@ -24,7 +24,7 @@ public class TaskService {
 		System.out.println("Task added successfully. Id: " + task.getId());
 	}
 
-	public void list() {
+	public void listAll() {
 		taskRepository.getAll().stream().forEach(System.out::println);
 	}
 
@@ -53,7 +53,32 @@ public class TaskService {
 
 	private void changeStatus(int id, TaskStatus status) {
 		Task task = getTaskById(id);
+
+		if (task == null) {
+			System.err.println("Task not found. Id: " + id);
+			return;
+		}
+
 		task.updateStatus(status);
+
+		try {
+			taskRepository.update(task);
+			System.out.println("Task updated successfully. Id: " +
+							   task.getId());
+		} catch (DmlException e) {
+			System.err.println("Error updating task. Id: " + task.getId());
+		}
+	}
+
+	public void update(int id, String description) {
+		Task task = getTaskById(id);
+
+		if (task == null) {
+			System.err.println("Task not found. Id: " + id);
+			return;
+		}
+
+		task.updateDescription(description);
 
 		try {
 			taskRepository.update(task);
