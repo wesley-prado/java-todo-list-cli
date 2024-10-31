@@ -13,6 +13,18 @@ public class MarkDoneCommand implements Command {
 	}
 
 	public void execute(List<String> args) {
-		System.out.println("Mark-done command executed");
+		if (args.isEmpty()) {
+			System.err.println("The task id is required");
+			return;
+		}
+
+		String taskId = args.getFirst();
+
+		try {
+			int id = Integer.parseInt(taskId);
+			taskService.markDone(id);
+		} catch (NumberFormatException e) {
+			System.err.println("Invalid task id: " + taskId);
+		}
 	}
 }
