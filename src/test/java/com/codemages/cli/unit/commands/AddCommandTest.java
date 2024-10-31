@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AddCommandTest {
 		private class SUTFactory {
-				private final Command          sut;
+				private final Command sut;
 				private final Repository<Task> taskRepository;
 
 				public SUTFactory() {
@@ -31,9 +31,10 @@ public class AddCommandTest {
 				SUTFactory sutFactory = new SUTFactory();
 				Command addCommand = sutFactory.sut;
 
-				assertThrows(InvalidParameterException.class, () -> {
-						addCommand.execute(new ArrayList<>());
-				});
+				assertThrows(
+								InvalidParameterException.class,
+								() -> addCommand.execute(new ArrayList<>())
+				);
 		}
 
 		@Test
@@ -41,9 +42,10 @@ public class AddCommandTest {
 				SUTFactory sutFactory = new SUTFactory();
 				Command addCommand = sutFactory.sut;
 
-				assertThrows(InvalidParameterException.class, () -> {
-						addCommand.execute(new ArrayList<>(List.of("")));
-				});
+				assertThrows(
+								InvalidParameterException.class,
+								() -> addCommand.execute(new ArrayList<>(List.of("")))
+				);
 		}
 
 		@Test
