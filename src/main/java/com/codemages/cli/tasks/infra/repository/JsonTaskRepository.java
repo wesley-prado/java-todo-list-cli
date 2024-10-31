@@ -121,7 +121,7 @@ public class JsonTaskRepository implements Repository<Task> {
 
 				if (map.get("id") instanceof String id &&
 						((String) map.get("id")).matches("\\d+")) {
-						task.setId(Integer.valueOf(id));
+						task.setId(Integer.parseInt(id));
 				}
 
 				if (map.get("description") instanceof String description) {
