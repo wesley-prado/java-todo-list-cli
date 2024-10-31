@@ -64,10 +64,6 @@ Para executar a aplicação, utilize o seguinte comando:
 
 ou você pode adicionar no seu PATH para executar o comando em qualquer lugar do seu sistema.
 
-```sh
-export PATH=$PATH:/caminho/do/projeto/build/install/task-cli/bin
-```
-
 ### Exemplos de Comandos
 
 - **Adicionar uma tarefa:**
