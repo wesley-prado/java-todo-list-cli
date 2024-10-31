@@ -16,63 +16,61 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddCommandTest {
-	private class SUTFactory {
-		private final Command          sut;
-		private final Repository<Task> taskRepository;
-		private final TaskService      taskService;
+		private class SUTFactory {
+				private final Command          sut;
+				private final Repository<Task> taskRepository;
 
-		public SUTFactory() {
-			this.taskRepository = new TaskRepositoryMock();
-			this.taskService = new TaskService(taskRepository);
-			this.sut = new AddCommand(taskService);
-		}
-	}
-
-	@Test
-	public void execute_shouldThrowException_whenNoArguments() {
-		SUTFactory sutFactory = new SUTFactory();
-		Command addCommand = sutFactory.sut;
-
-		assertThrows(InvalidParameterException.class, () -> {
-			addCommand.execute(new ArrayList<>());
-		});
-	}
-
-	@Test
-	public void execute_shouldThrowException_whenEmptyArgument() {
-		SUTFactory sutFactory = new SUTFactory();
-		Command addCommand = sutFactory.sut;
-
-		assertThrows(InvalidParameterException.class, () -> {
-			addCommand.execute(new ArrayList<>(List.of("")));
-		});
-	}
-
-	@Test
-	public void execute_shouldCallTaskRepositoryInsert_whenValidArgument() {
-		SUTFactory sutFactory = new SUTFactory();
-		Command addCommand = sutFactory.sut;
-
-		try {
-			addCommand.execute(new ArrayList<>(List.of("Task description")));
-		} catch (InvalidParameterException e) {
-			fail("Should not throw exception");
-		}
-
-		TaskRepositoryMock taskManager =
-				(TaskRepositoryMock) sutFactory.taskRepository;
-		taskManager.assertCalledWith(
-				"insert",
-				1,
-				new Object[]{
-						new Task(
-								0,
-								"Task description",
-								TaskStatus.TODO,
-								null,
-								null
-						)
+				public SUTFactory() {
+						this.taskRepository = new TaskRepositoryMock();
+						this.sut = new AddCommand(new TaskService(taskRepository));
 				}
-		);
-	}
+		}
+
+		@Test
+		public void execute_shouldThrowException_whenNoArguments() {
+				SUTFactory sutFactory = new SUTFactory();
+				Command addCommand = sutFactory.sut;
+
+				assertThrows(InvalidParameterException.class, () -> {
+						addCommand.execute(new ArrayList<>());
+				});
+		}
+
+		@Test
+		public void execute_shouldThrowException_whenEmptyArgument() {
+				SUTFactory sutFactory = new SUTFactory();
+				Command addCommand = sutFactory.sut;
+
+				assertThrows(InvalidParameterException.class, () -> {
+						addCommand.execute(new ArrayList<>(List.of("")));
+				});
+		}
+
+		@Test
+		public void execute_shouldCallTaskRepositoryInsert_whenValidArgument() {
+				SUTFactory sutFactory = new SUTFactory();
+				Command addCommand = sutFactory.sut;
+
+				try {
+						addCommand.execute(new ArrayList<>(List.of("Task description")));
+				} catch (InvalidParameterException e) {
+						fail("Should not throw exception");
+				}
+
+				TaskRepositoryMock taskManager =
+								(TaskRepositoryMock) sutFactory.taskRepository;
+				taskManager.assertCalledWith(
+								"insert",
+								1,
+								new Object[]{
+												new Task(
+																0,
+																"Task description",
+																TaskStatus.TODO,
+																null,
+																null
+												)
+								}
+				);
+		}
 }
