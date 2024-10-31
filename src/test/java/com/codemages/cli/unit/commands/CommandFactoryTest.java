@@ -17,13 +17,10 @@ import java.util.List;
 public class CommandFactoryTest {
 		private class SUTFactory {
 				private final CommandFactory sut;
-				Repository<Task> taskRepository;
-				TaskService      taskService;
 
 				public SUTFactory() {
-						this.taskRepository = new TaskRepositoryMock();
-						this.taskService = new TaskService(taskRepository);
-						sut = new CommandFactory(this.taskService);
+						sut =
+										new CommandFactory(new TaskService(new TaskRepositoryMock()));
 				}
 		}
 
