@@ -4,8 +4,6 @@ import com.codemages.cli.commands.AddCommand;
 import com.codemages.cli.commands.CommandFactory;
 import com.codemages.cli.commands.interfaces.Command;
 import com.codemages.cli.commands.exceptions.InvalidParameterException;
-import com.codemages.cli.repository.interfaces.Repository;
-import com.codemages.cli.tasks.entities.Task;
 import com.codemages.cli.tasks.services.TaskService;
 import com.codemages.cli.unit.mocks.TaskRepositoryMock;
 import org.junit.jupiter.api.Assertions;
