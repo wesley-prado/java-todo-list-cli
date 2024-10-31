@@ -43,18 +43,10 @@ public class TaskModel implements Comparable<TaskModel> {
 				}
 		}
 
-		public String getDescription() {
-				return description;
-		}
-
 		public void setDescription(String description) {
 				if (description != null && !description.isEmpty()) {
 						this.description = description;
 				}
-		}
-
-		public String getStatus() {
-				return status;
 		}
 
 		public void setStatus(String status) {
@@ -71,18 +63,10 @@ public class TaskModel implements Comparable<TaskModel> {
 				this.createdAt = createdAt;
 		}
 
-		public LocalDateTime getCreatedAt() {
-				return createdAt;
-		}
-
 		public void setUpdatedAt(LocalDateTime updatedAt) {
 				if (updatedAt != null) {
 						this.updatedAt = updatedAt;
 				}
-		}
-
-		public LocalDateTime getUpdatedAt() {
-				return updatedAt;
 		}
 
 		public Task toTask() {
