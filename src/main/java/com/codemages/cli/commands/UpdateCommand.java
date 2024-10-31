@@ -13,6 +13,20 @@ public class UpdateCommand implements Command {
 	}
 
 	public void execute(List<String> args) {
-		System.out.println("Update command executed");
+		if (args.size() < 2) {
+			System.err.println("The task id and description are required");
+			return;
+		}
+
+		String taskId = args.get(0);
+		String description = args.get(1);
+
+		try {
+			int id = Integer.parseInt(taskId);
+
+			taskService.update(id, description);
+		} catch (NumberFormatException e) {
+			System.err.println("Invalid task id: " + taskId);
+		}
 	}
 }
