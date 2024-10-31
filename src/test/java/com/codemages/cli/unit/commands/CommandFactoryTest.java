@@ -15,34 +15,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandFactoryTest {
-	private class SUTFactory {
-		private CommandFactory sut;
-		Repository<Task> taskRepository;
-		TaskService      taskService;
+		private class SUTFactory {
+				private final CommandFactory sut;
+				Repository<Task> taskRepository;
+				TaskService      taskService;
 
-		public SUTFactory() {
-			this.taskRepository = new TaskRepositoryMock();
-			this.taskService = new TaskService(taskRepository);
-			sut = new CommandFactory(this.taskService);
+				public SUTFactory() {
+						this.taskRepository = new TaskRepositoryMock();
+						this.taskService = new TaskService(taskRepository);
+						sut = new CommandFactory(this.taskService);
+				}
 		}
-	}
 
-	@Test
-	public void getCommand_WhenCommandIsAdd_ShouldReturnAddCommand() {
-		SUTFactory sutFactory = new SUTFactory();
-		CommandFactory cf = sutFactory.sut;
+		@Test
+		public void getCommand_WhenCommandIsAdd_ShouldReturnAddCommand() {
+				SUTFactory sutFactory = new SUTFactory();
+				CommandFactory cf = sutFactory.sut;
 
-		try {
-			Command command = cf.getCommand(new ArrayList<>(List.of("add")));
+				try {
+						Command command = cf.getCommand(new ArrayList<>(List.of("add")));
 
-			Assertions.assertInstanceOf(
-					AddCommand.class,
-					command,
-					"Command should be an instance of AddCommand"
-			);
-		} catch (InvalidParameterException e) {
-			System.err.println(e.getStackTrace());
-			Assertions.fail("Exception thrown: " + e.getMessage());
+						Assertions.assertInstanceOf(
+										AddCommand.class,
+										command,
+										"Command should be an instance of AddCommand"
+						);
+				} catch (InvalidParameterException e) {
+						System.err.println(e.getStackTrace());
+						Assertions.fail("Exception thrown: " + e.getMessage());
+				}
 		}
-	}
 }
