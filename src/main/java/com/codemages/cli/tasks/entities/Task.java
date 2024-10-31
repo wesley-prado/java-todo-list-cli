@@ -56,10 +56,16 @@ public class Task implements Comparable<Task> {
 
 	public void updateDescription(String description) {
 		this.description = description;
+		setUpdatedAtNow();
 	}
 
 	public void updateStatus(TaskStatus status) {
 		this.status = status;
+		setUpdatedAtNow();
+	}
+
+	private void setUpdatedAtNow() {
+		this.updatedAt = LocalDateTime.now();
 	}
 
 	@Override
