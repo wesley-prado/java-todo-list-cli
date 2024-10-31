@@ -59,8 +59,6 @@ public class TaskModel implements Comparable<TaskModel> {
 				if (createdAt != null) {
 						this.createdAt = createdAt;
 				}
-
-				this.createdAt = createdAt;
 		}
 
 		public void setUpdatedAt(LocalDateTime updatedAt) {
