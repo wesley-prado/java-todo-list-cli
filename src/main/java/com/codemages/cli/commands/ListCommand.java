@@ -15,7 +15,7 @@ public class ListCommand implements Command {
 
 	public void execute(List<String> args) {
 		if (args.isEmpty()) {
-			taskService.list();
+			taskService.listAll();
 			return;
 		}
 
