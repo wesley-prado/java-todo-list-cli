@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CommandFactoryTest {
-		private class SUTFactory {
+		private static class SUTFactory {
 				private final CommandFactory sut;
 
 				public SUTFactory() {
@@ -36,7 +37,7 @@ public class CommandFactoryTest {
 										"Command should be an instance of AddCommand"
 						);
 				} catch (InvalidParameterException e) {
-						System.err.println(e.getStackTrace());
+						System.err.println(Arrays.toString(e.getStackTrace()));
 						Assertions.fail("Exception thrown: " + e.getMessage());
 				}
 		}

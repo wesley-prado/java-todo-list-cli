@@ -16,8 +16,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddCommandTest {
-		private class SUTFactory {
-				private final Command sut;
+		private static class SUTFactory {
+				private final Command          sut;
 				private final Repository<Task> taskRepository;
 
 				public SUTFactory() {
