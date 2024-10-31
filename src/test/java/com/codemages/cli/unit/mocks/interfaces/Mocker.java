@@ -36,10 +36,6 @@ public class Mocker {
 				Field[] fields1 = obj1.getClass().getDeclaredFields();
 				Field[] fields2 = obj2.getClass().getDeclaredFields();
 
-				if (fields1.length != fields2.length) {
-						return false;
-				}
-
 				for (int i = 0; i < fields1.length; i++) {
 						fields1[i].setAccessible(true);
 						fields2[i].setAccessible(true);
